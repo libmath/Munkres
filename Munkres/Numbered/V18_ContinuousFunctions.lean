@@ -1,6 +1,7 @@
 import Munkres.Closure.Subtype
 import Munkres.Mathlib.AccPt.Basic
 import Munkres.Mathlib.Disjoint
+import Munkres.Mathlib.Continuous
 import Munkres.Subtype.Topology
 
 import Mathlib.Data.Set.Operations
@@ -146,3 +147,64 @@ example {s : Set α} (hf : Continuous f) : Continuous fun x : s ↦ f x
   exact ⟨U, hU, rfl⟩ -- ∎
 
 end S₂
+
+section S₃
+--* Theorem 18.3: Pasting Lemma
+variable [TopologicalSpace α] [TopologicalSpace β] {A B : Set α}
+  {f : A → β} {g : B → β}
+
+private noncomputable def φ (h : A ∪ B = univ) (f : A → β) (g : B → β) : α → β := by
+  intro x
+  have hAB : x ∈ A ∨ x ∈ B := by change x ∈ A ∪ B; rw [h]; trivial
+  if hA : x ∈ A then
+    exact f ⟨x, hA⟩
+  else
+    have hB := hAB.resolve_left hA
+    exact g ⟨x, hB⟩
+
+example (hA : IsClosed A) (hB : IsClosed B) (hX : A ∪ B = univ)
+  (hf : Continuous f) (hg : Continuous g)
+  -- The functions agree on the intersection.
+  (heq : ∀ x, (h : x ∈ A ∩ B) → f ⟨x, h.1⟩ = g ⟨x, h.2⟩)
+  : Continuous (φ hX f g)
+  := by --
+  let ψ := φ hX f g
+  have : Continuous ψ ↔ ∀ B, IsClosed B → IsClosed (ψ ⁻¹' B) := Continuous.tfae.out 0 2
+  rw [this]
+  intro C hC
+  have h' (x : α) : x ∈ A ∨ x ∈ B := by change x ∈ A ∪ B; rw [hX]; exact trivial
+  have : ψ ⁻¹' C = Subtype.val '' (f ⁻¹' C) ∪ Subtype.val '' (g ⁻¹' C) := by
+    refine Set.Subset.antisymm ?_ ?_
+    · intro x (hx : ψ x ∈ C)
+      dsimp only [ψ, φ] at hx
+      if hxA : x ∈ A then
+        rw [dif_pos hxA] at hx
+        exact Or.inl ⟨⟨x, hxA⟩, hx, rfl⟩
+      else
+        rw [dif_neg hxA] at hx
+        have hxB := (h' x).resolve_left hxA
+        exact Or.inr ⟨⟨x, hxB⟩, hx, rfl⟩
+    · intro x hx
+      rcases hx with hxA | hxB
+      · obtain ⟨⟨y, hyA⟩, hyC, heq⟩ := hxA
+        subst heq
+        rw [mem_preimage]
+        dsimp only [ψ, φ]
+        rw [dif_pos hyA]
+        exact hyC
+      · obtain ⟨⟨y, hyB⟩, hyC, heq⟩ := hxB
+        subst heq
+        rw [mem_preimage]
+        dsimp only [ψ, φ]
+        if hyA : y ∈ A then
+          rw [dif_pos hyA, heq y ⟨hyA, hyB⟩]
+          exact hyC
+        else
+          rw [dif_neg hyA]
+          exact hyC
+  rw [this]
+  refine IsClosed.union ?_ ?_
+  · exact (hC.preimage hf).trans hA
+  · exact (hC.preimage hg).trans hB -- ∎
+
+end S₃

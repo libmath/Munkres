@@ -1,6 +1,7 @@
 import Munkres.Mathlib.AccPt
 import Munkres.Mathlib.AccPt.Basic
 import Munkres.Mathlib.AccPt.Countable
+import Munkres.Mathlib.Continuous
 import Munkres.Mathlib.Disjoint
 import Munkres.Mathlib.Lipschitz
 import Munkres.Mathlib.MonotoneSubseq
