@@ -6,11 +6,6 @@ import Mathlib.Topology.Closure
 import Mathlib.Topology.ClusterPt
 import Mathlib.Topology.Coherent
 import Mathlib.Topology.CompactOpen
-import Mathlib.Topology.Compactification.OnePoint
-import Mathlib.Topology.Compactification.OnePoint.Basic
-import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
-import Mathlib.Topology.Compactification.OnePoint.Sphere
-import Mathlib.Topology.Compactification.OnePointEquiv
 import Mathlib.Topology.Compactification.StoneCech
 import Mathlib.Topology.Compactness.Bases
 import Mathlib.Topology.Compactness.Compact
@@ -18,7 +13,6 @@ import Mathlib.Topology.Compactness.CompactlyCoherentSpace
 import Mathlib.Topology.Compactness.CompactlyGeneratedSpace
 import Mathlib.Topology.Compactness.DeltaGeneratedSpace
 import Mathlib.Topology.Compactness.Exterior
-import Mathlib.Topology.Compactness.HilbertCubeEmbedding
 import Mathlib.Topology.Compactness.Lindelof
 import Mathlib.Topology.Compactness.LocallyCompact
 import Mathlib.Topology.Compactness.LocallyFinite
@@ -92,7 +86,6 @@ import Mathlib.Topology.FiberPartition
 import Mathlib.Topology.Filter
 import Mathlib.Topology.GDelta.Basic
 import Mathlib.Topology.GDelta.MetrizableSpace
-import Mathlib.Topology.GDelta.UniformSpace
 import Mathlib.Topology.Germ
 import Mathlib.Topology.Gluing
 import Mathlib.Topology.Hom.ContinuousEval
@@ -254,7 +247,6 @@ import Mathlib.Topology.Perfect
 import Mathlib.Topology.Piecewise
 import Mathlib.Topology.PreorderRestrict
 import Mathlib.Topology.QuasiSeparated
-import Mathlib.Topology.Semicontinuous
 import Mathlib.Topology.SeparatedMap
 import Mathlib.Topology.Separation.AlexandrovDiscrete
 import Mathlib.Topology.Separation.Basic

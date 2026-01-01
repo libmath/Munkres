@@ -45,7 +45,7 @@ theorem IsSeparation.iff₂ : IsSeparation A B ↔ A.Nonempty ∧ B.Nonempty ∧
   · intro ⟨hA₀, hB₀, disjoint', union', hapA, hapB⟩
     let A' := closure (A : Set α)
     let B' := closure (B : Set α)
-
+    --
     have hdA'B : Disjoint A' B := by
       rw [<-Set.image_val_inter_self_right_eq_coe]
       rw [<-disjoint_assoc₂]
@@ -54,7 +54,7 @@ theorem IsSeparation.iff₂ : IsSeparation A B ↔ A.Nonempty ∧ B.Nonempty ∧
       rw [Set.disjoint_image_subtype_iff]
       refine Set.disjoint_union_left.mpr ⟨disjoint', ?_⟩
       exact Set.disjoint_left.mpr hapA
-
+    --
     have hdB'A : Disjoint B' A := by
       rw [<-Set.image_val_inter_self_right_eq_coe]
       rw [<-disjoint_assoc₂]
@@ -63,7 +63,7 @@ theorem IsSeparation.iff₂ : IsSeparation A B ↔ A.Nonempty ∧ B.Nonempty ∧
       rw [Set.disjoint_image_subtype_iff]
       refine Set.disjoint_union_left.mpr ⟨disjoint'.symm, ?_⟩
       exact Set.disjoint_left.mpr hapB
-
+    --
     have hA'eq : A' ∩ Y = A := by
       conv => lhs; rw [<-union']
       rw [Set.image_val_union]
@@ -71,7 +71,7 @@ theorem IsSeparation.iff₂ : IsSeparation A B ↔ A.Nonempty ∧ B.Nonempty ∧
       rw [hdA'B.inter_eq]
       rw [Set.union_empty]
       exact Set.inter_eq_self_of_subset_right subset_closure
-
+    --
     have hB'eq : B' ∩ Y = B := by
       conv => lhs; rw [<-union']
       rw [Set.image_val_union]
@@ -79,19 +79,19 @@ theorem IsSeparation.iff₂ : IsSeparation A B ↔ A.Nonempty ∧ B.Nonempty ∧
       rw [hdB'A.inter_eq]
       rw [Set.empty_union]
       exact Set.inter_eq_self_of_subset_right subset_closure
-
+    --
     have hA : IsClosed A := by
       rw [<-closure_eq_iff_isClosed, <-Set.image_val_inj, closure_subtype₂]
       exact hA'eq
-
+    --
     have hB : IsClosed B := by
       rw [<-closure_eq_iff_isClosed, <-Set.image_val_inj, closure_subtype₂]
       exact hB'eq
-
+    --
     have union' := Set.eq_univ_of_image_val_eq union'
     rw [<-disjoint'.union_eq_univ_left_compl union'] at hB
     rw [<-disjoint'.union_eq_univ_right_compl union'] at hA
-
+    --
     exact {
       left' := ⟨isClosed_compl_iff.mp hB, hA₀⟩
       right' := ⟨isClosed_compl_iff.mp hA, hB₀⟩

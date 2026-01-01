@@ -61,11 +61,11 @@ private noncomputable def M' (X : Type u) [MetricSpace X] : MetricSpace X
       refine add_le_add ?_ ?_
       · refine div_le_div_of_nonneg_left ?_ hd₁ ?_
         · exact dist_nonneg
-        · refine add_le_add_left ?_ 1
+        · refine add_le_add_right ?_ 1
           exact (le_add_iff_nonneg_right _).mpr dist_nonneg
       · refine div_le_div_of_nonneg_left ?_ hd₁ ?_
         · exact dist_nonneg
-        · refine add_le_add_left ?_ 1
+        · refine add_le_add_right ?_ 1
           exact (le_add_iff_nonneg_left _).mpr dist_nonneg
   } -- ∎
 private noncomputable def P := M.toPseudoMetricSpace
@@ -93,7 +93,7 @@ private lemma d_le_ρ (hle : d x y ≤ 1) : d x y ≤ 2 * ρ x y
   have : d x y / (1 + 1) ≤ d x y / (1 + d x y) := by
     refine div_le_div_of_nonneg_left dist_nonneg ?_ ?_
     · exact add_pos_of_pos_of_nonneg zero_lt_one dist_nonneg
-    · exact add_le_add_left hle 1
+    · exact add_le_add_right hle 1
   refine (mul_le_mul_of_nonneg_left this zero_le_two).trans' ?_
   rw [one_add_one_eq_two, mul_div_cancel₀ _ two_ne_zero] -- ∎
 
@@ -390,7 +390,6 @@ private lemma c₃ : @CompleteSpace X (U' X) → @CompleteSpace (Λ → X) U₂
   use y
   rw [@Metric.tendsto_atTop]
   rw [@Metric.cauchySeq_iff] at hf
-
   -- We have to choose the first N. At this point we obly have that fₙ is Cauchy.
   -- Use that first.
   intro E hE
@@ -405,10 +404,8 @@ private lemma c₃ : @CompleteSpace X (U' X) → @CompleteSpace (Λ → X) U₂
     intro m hm
     specialize hf n hn m hm
     exact (le_csSup ⟨1, hρ₁⟩ ⟨α, rfl⟩).trans_lt hf
-
   -- so now, we have that for all α ∈ Λ, ρ(fₙ(α),fₘ(α)) < ε / 2, and we can
   -- obtain ρ(fₘ(α),f(α)) < ε / 2 from the fact that fₘ(α) → f(α) as m → ∞.
-
   refine hεE.trans_le' ?_
   refine csSup_le ?_ ?_
   · let α := h₀.some -- here we use the Nonempty Λ we secured way early on.

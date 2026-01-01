@@ -22,12 +22,10 @@ theorem IsCountablyGenerated.iff {x : α} :
   constructor
   · intro h
     obtain ⟨g, hg, heq⟩ := h.out
-
     let F := {s | s.Finite ∧ s ⊆ g}
     have hF : F.Countable := Set.countable_setOf_finite_subset hg
     let B := {interior (⋂₀ s) | s ∈ F}
     have hB_countable : B.Countable := hF.image (interior <| ⋂₀ ·)
-
     refine ⟨B, hB_countable, ?_⟩
     exact {
       isOpen' := by
