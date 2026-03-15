@@ -3,6 +3,8 @@
 import Mathlib.Data.SetLike.Basic
 import Mathlib.Topology.Defs.Basic
 
+import Munkres.Mathlib.Prelude
+
 namespace Munkres
 
 universe u w
@@ -31,8 +33,13 @@ instance (K : Set α) : SetLike (sOpenCover K) (Set α) where
   coe := sOpenCover.carrier
   coe_injective' _ _ := sOpenCover.ext
 
--- example {K : Set α} : IsCompact K ↔ ∀ {ι : Type*} (U : iOpenCover K ι),
--- ∃ F : iOpenCover K ι, F := by
+-- instance (K : Set α) : HasSubset (sOpenCover K) where
+--   Subset a b := 
+
+-- example {K : Set α} : IsCompact K ↔ ∀ (U : sOpenCover K),
+--   ∃ F ⊆ U, true
+--   := by
+--   -- ∃ F : iOpenCover K ι, F := by
 --   sorry
 
 end Munkres
