@@ -49,8 +49,7 @@ example : List.TFAE [ Continuous f,
     intro B hB
     exact isClosed_compl_iff.mp (h Bᶜ hB.isClosed_compl)
   tfae_have 1 → 5 := by
-    intro h
-    intro x V hV hxV
+    intro h x V hV hxV
     use f ⁻¹' V -- the pre-image is precisely the neighborhood we need.
     exact ⟨h.isOpen_preimage _ hV, hxV, image_preimage_subset f V⟩
   tfae_have 5 → 1 := by

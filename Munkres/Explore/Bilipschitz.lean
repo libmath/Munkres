@@ -38,6 +38,7 @@ private lemma hf₁ {t : ℝ} (ht : 0 ≤ t) : f t ≤ 1
   exact zero_le_one -- ∎
 
 -- ρ = d / (1 + d) is a metric.
+@[reducible]
 private noncomputable def M' (X : Type u) [MetricSpace X] : MetricSpace X
   := by --
   exact {
@@ -68,16 +69,25 @@ private noncomputable def M' (X : Type u) [MetricSpace X] : MetricSpace X
         · refine add_le_add_right ?_ 1
           exact (le_add_iff_nonneg_left _).mpr dist_nonneg
   } -- ∎
+@[reducible]
 private noncomputable def P := M.toPseudoMetricSpace
+@[reducible]
 private noncomputable def P' (X : Type u) [MetricSpace X] := (M' X).toPseudoMetricSpace
+@[reducible]
 private noncomputable def P₁ := (M' X).toPseudoMetricSpace
+@[reducible]
 private noncomputable def U := M.toPseudoMetricSpace.toUniformSpace
+@[reducible]
 private noncomputable def U' (X : Type u) [MetricSpace X] :=
   (M' X).toPseudoMetricSpace.toUniformSpace
+@[reducible]
 private noncomputable def U₁ := (M' X).toPseudoMetricSpace.toUniformSpace
+@[reducible]
 private noncomputable def T := M.toPseudoMetricSpace.toUniformSpace.toTopologicalSpace
+@[reducible]
 private noncomputable def T' (X : Type u) [MetricSpace X] :=
   (M' X).toPseudoMetricSpace.toUniformSpace.toTopologicalSpace
+@[reducible]
 private noncomputable def T₁ := (M' X).toPseudoMetricSpace.toUniformSpace.toTopologicalSpace
 
 private lemma ρ_eq : ρ = (M' X).dist := rfl
@@ -250,6 +260,7 @@ variable {Λ : Type v} {x y : Λ → X}
 /-- ρ-bar. -/
 private noncomputable def b (x y : Λ → X) : ℝ := sSup { ρ (x α) (y α) | α : Λ }
 
+@[reducible]
 private def subsingleton_ms : Subsingleton Λ → MetricSpace Λ
   := by --
   intro h
@@ -289,6 +300,7 @@ theorem sSup_le_add {A B : Set ℝ}
     · exact le_csSup hA ha
     · exact le_csSup hB hb -- ∎
 
+@[reducible]
 private noncomputable def M₂ (Λ : Type v) (X : Type u) [MetricSpace X] : MetricSpace (Λ → X)
   := by --
   exact {
@@ -348,8 +360,11 @@ private noncomputable def M₂ (Λ : Type v) (X : Type u) [MetricSpace X] : Metr
         · exact ⟨α, rfl⟩
         · exact ⟨α, rfl⟩
   } -- ∎
+@[reducible]
 private noncomputable def P₂ := (M₂ Λ X).toPseudoMetricSpace
+@[reducible]
 private noncomputable def U₂ := (M₂ Λ X).toPseudoMetricSpace.toUniformSpace
+@[reducible]
 private noncomputable def T₂ := (M₂ Λ X).toPseudoMetricSpace.toUniformSpace.toTopologicalSpace
 
 private lemma b_eq : b = (M₂ Λ X).dist := rfl

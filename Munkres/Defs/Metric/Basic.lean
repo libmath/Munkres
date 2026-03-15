@@ -48,12 +48,12 @@ variable {ι : Sort v} {c : ι → Set α} {δ : ℝ≥0}
 /-- Tells us if `δ` is a lebesgue number of the open cover `c`. -/
 class LebesgueNumber (δ : ℝ≥0) (ho : ∀ i, IsOpen (c i)) (hc : Set.univ ⊆ ⋃ i, c i) : Prop where
   ne_zero : δ ≠ 0
-  out : ∀ s : Set α, EMetric.diam s < δ → ∃ i, s ⊆ c i
+  out : ∀ s : Set α, Metric.diam s < δ → ∃ i, s ⊆ c i
 
 lemma LebesgueNumber.pos (h : LebesgueNumber δ ho hc) : δ > 0 := pos_of_ne_zero h.ne_zero
 
 protected theorem LebesgueNumber.iff : LebesgueNumber δ ho hc
-  ↔ δ ≠ 0 ∧ ∀ s : Set α, EMetric.diam s < δ → ∃ i, s ⊆ c i
+  ↔ δ ≠ 0 ∧ ∀ s : Set α, Metric.diam s < δ → ∃ i, s ⊆ c i
   := by --
   constructor
   · intro h

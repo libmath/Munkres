@@ -6,6 +6,7 @@ universe u
 
 variable {α : Type u} {X Y : Set α} [tY : TopologicalSpace Y]
 
+@[reducible]
 def Topology.Subspace (h : X ⊆ Y) : TopologicalSpace X
   := by --
   let X' := { y : Y | ↑y ∈ X }

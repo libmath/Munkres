@@ -11,6 +11,7 @@ section Q₁
 -- Let 𝓒 be a collection of subsets of the set X. Suppose that ∅ and X are in 𝓒,
 -- and that finite unions and arbitrary intersections of elements of 𝓒 are in 𝓒.
 -- Show that the collection T = { X - C | C ∈ 𝓒 } is a topology on X.
+@[reducible]
 private def q₁ {C : Set (Set α)}
   (h_empty : ∅ ∈ C)
   (h_inter : ∀ s ⊆ C, ⋂₀ s ∈ C)
