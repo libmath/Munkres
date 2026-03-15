@@ -1,6 +1,8 @@
-import Munkres.Subtype.Induced
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Topology.Compactness.Compact
 
 import Munkres.Defs.Subtype
+import Munkres.Subtype.Induced
 
 open Set
 

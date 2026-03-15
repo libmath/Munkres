@@ -1,4 +1,4 @@
-import Mathlib.Topology.Separation.Hausdorff
+import Mathlib.Topology.Defs.Filter
 
 universe u
 

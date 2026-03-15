@@ -3,6 +3,7 @@ import Munkres.Mathlib.AccPt.Basic
 import Munkres.Mathlib.AccPt.Countable
 import Munkres.Mathlib.Continuous
 import Munkres.Mathlib.Disjoint
+import Munkres.Mathlib.IsOpen
 import Munkres.Mathlib.Lipschitz
 import Munkres.Mathlib.MonotoneSubseq
 import Munkres.Mathlib.Prelude
